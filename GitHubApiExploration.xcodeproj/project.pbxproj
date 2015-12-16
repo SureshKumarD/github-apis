@@ -15,6 +15,7 @@
 		F935D5BF1C21E41C002A746E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F935D5BD1C21E41C002A746E /* LaunchScreen.storyboard */; };
 		F935D5CA1C21E41C002A746E /* GitHubApiExplorationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5C91C21E41C002A746E /* GitHubApiExplorationTests.m */; };
 		F935D5D51C21E41C002A746E /* GitHubApiExplorationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5D41C21E41C002A746E /* GitHubApiExplorationUITests.m */; };
+		F935D5E41C21E66E002A746E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5E31C21E66E002A746E /* NetworkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		F935D5D01C21E41C002A746E /* GitHubApiExplorationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubApiExplorationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F935D5D41C21E41C002A746E /* GitHubApiExplorationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitHubApiExplorationUITests.m; sourceTree = "<group>"; };
 		F935D5D61C21E41C002A746E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F935D5E21C21E66E002A746E /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		F935D5E31C21E66E002A746E /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 			children = (
 				F935D5B21C21E41C002A746E /* AppDelegate.h */,
 				F935D5B31C21E41C002A746E /* AppDelegate.m */,
+				F935D5E21C21E66E002A746E /* NetworkManager.h */,
+				F935D5E31C21E66E002A746E /* NetworkManager.m */,
 				F935D5B81C21E41C002A746E /* Main.storyboard */,
 				F935D5BB1C21E41C002A746E /* Assets.xcassets */,
 				F935D5BD1C21E41C002A746E /* LaunchScreen.storyboard */,
@@ -341,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F935D5B41C21E41C002A746E /* AppDelegate.m in Sources */,
+				F935D5E41C21E66E002A746E /* NetworkManager.m in Sources */,
 				F935D5B11C21E41C002A746E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
