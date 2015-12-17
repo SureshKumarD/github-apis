@@ -4,7 +4,7 @@
 # use_frameworks!
 
 target 'GitHubApiExploration' do
-pod 'AFNetworking'
+pod 'AFNetworking','~> 2.0'
 
 end
 

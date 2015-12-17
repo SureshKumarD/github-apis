@@ -18,6 +18,10 @@
 		F935D5E41C21E66E002A746E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5E31C21E66E002A746E /* NetworkManager.m */; };
 		F935D5E71C21E7CC002A746E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5E61C21E7CC002A746E /* HomeViewController.m */; };
 		F935D5EA1C21EDAA002A746E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F935D5E91C21EDAA002A746E /* BaseViewController.m */; };
+		F95EC9D11C22261D0045964C /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9D01C22261D0045964C /* InfoViewController.m */; };
+		F95EC9D51C223F920045964C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9D41C223F920045964C /* InfoTableViewCell.m */; };
+		F95EC9D81C223FAB0045964C /* InfoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */; };
+		F95EC9DB1C22511C0045964C /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9DA1C22511C0045964C /* CustomTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,14 @@
 		F935D5E91C21EDAA002A746E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F935D5ED1C21EF72002A746E /* Constants.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.pch; sourceTree = "<group>"; };
 		F935D5EE1C21EFE7002A746E /* Headers.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.pch; sourceTree = "<group>"; };
+		F95EC9CF1C22261D0045964C /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		F95EC9D01C22261D0045964C /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		F95EC9D31C223F920045964C /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		F95EC9D41C223F920045964C /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		F95EC9D61C223FAB0045964C /* InfoHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoHeaderCell.h; sourceTree = "<group>"; };
+		F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoHeaderCell.m; sourceTree = "<group>"; };
+		F95EC9D91C22511C0045964C /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		F95EC9DA1C22511C0045964C /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +153,8 @@
 				F935D5EE1C21EFE7002A746E /* Headers.pch */,
 				F935D5E51C21E7CC002A746E /* HomeViewController.h */,
 				F935D5E61C21E7CC002A746E /* HomeViewController.m */,
-				F935D5E81C21EDAA002A746E /* BaseViewController.h */,
-				F935D5E91C21EDAA002A746E /* BaseViewController.m */,
+				F95EC9D21C223F580045964C /* InfoViewController */,
+				F95EC9DC1C22512F0045964C /* Common */,
 				F935D5B81C21E41C002A746E /* Main.storyboard */,
 				F935D5BB1C21E41C002A746E /* Assets.xcassets */,
 				F935D5BD1C21E41C002A746E /* LaunchScreen.storyboard */,
@@ -176,6 +188,30 @@
 				F935D5D61C21E41C002A746E /* Info.plist */,
 			);
 			path = GitHubApiExplorationUITests;
+			sourceTree = "<group>";
+		};
+		F95EC9D21C223F580045964C /* InfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F95EC9CF1C22261D0045964C /* InfoViewController.h */,
+				F95EC9D01C22261D0045964C /* InfoViewController.m */,
+				F95EC9D31C223F920045964C /* InfoTableViewCell.h */,
+				F95EC9D41C223F920045964C /* InfoTableViewCell.m */,
+				F95EC9D61C223FAB0045964C /* InfoHeaderCell.h */,
+				F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */,
+			);
+			name = InfoViewController;
+			sourceTree = "<group>";
+		};
+		F95EC9DC1C22512F0045964C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F95EC9D91C22511C0045964C /* CustomTableView.h */,
+				F95EC9DA1C22511C0045964C /* CustomTableView.m */,
+				F935D5E81C21EDAA002A746E /* BaseViewController.h */,
+				F935D5E91C21EDAA002A746E /* BaseViewController.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,11 +396,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F95EC9D81C223FAB0045964C /* InfoHeaderCell.m in Sources */,
 				F935D5B41C21E41C002A746E /* AppDelegate.m in Sources */,
 				F935D5EA1C21EDAA002A746E /* BaseViewController.m in Sources */,
+				F95EC9D11C22261D0045964C /* InfoViewController.m in Sources */,
 				F935D5E41C21E66E002A746E /* NetworkManager.m in Sources */,
+				F95EC9DB1C22511C0045964C /* CustomTableView.m in Sources */,
 				F935D5B11C21E41C002A746E /* main.m in Sources */,
 				F935D5E71C21E7CC002A746E /* HomeViewController.m in Sources */,
+				F95EC9D51C223F920045964C /* InfoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

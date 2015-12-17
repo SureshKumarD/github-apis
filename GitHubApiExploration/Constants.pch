@@ -15,8 +15,31 @@
 #define BASE_URL  @"https://api.github.com/"
 #define URL_SEARCH_REPO_TRAIL_FRAGMENT @"&sort=stars&order=desc"
 #define URL_SEARCH_REPO_QUERY_FRAGMENT @"q=language:"
-#define URL_FRAGMENT_REPOS @"search/repositories?"
+#define URL_SEARCH_REPOS @"search/repositories?"
 #define APP_DELEGATE_INSTANCE  ((AppDelegate *)[ [UIApplication sharedApplication] delegate])
 
+#define URL_ISSUES_REPOS @"repos/"
+#define URL_ISSUES_EVENTS @"/issues/events?per_page=3&page1"
+#define URL_CONTRIBUTORS @"/contributors?per_page=3&page=1"
 
+#define WINDOW_FRAME_WIDTH [[UIScreen mainScreen] bounds].size.width
+
+#define WINDOW_FRAME_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define NUMBER_ZERO 0
+#define NUMBER_ONE 1
+#define NUMBER_TWO 2
+#define NUMBER_THREE 3
+#define NUMBER_FOUR 4
+#define NUMBER_FIVE 5
+#define NUMBER_SIX 6
+#define NUMBER_SEVEN 7
+#define NUMBER_EIGHT 8
+#define NUMBER_NINE 9
+
+
+
+#define kBLACK_COLOR [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]
+#define HOME_SCREEN_TITLE @"Github Repos"
+
+#
 #endif /* Constants_pch */

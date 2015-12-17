@@ -7,12 +7,13 @@
 //
 
 #import "HomeViewController.h"
+#import "InfoViewController.h"
 #import "Headers.pch"
 #import "Constants.pch"
 #import "AppDelegate.h"
-
+#import "CustomTableView.h"
 @interface HomeViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet CustomTableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property BOOL isPageRefresing;
@@ -53,11 +54,13 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
-    self.currentpagenumber = 0;
+    self.currentpagenumber = 1;
     self.searchResults = [[NSMutableArray alloc] init];
+    self.title = HOME_SCREEN_TITLE;
 }
 #pragma mark - UISearchbar Delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    searchText = [searchText lowercaseString];
     _searchedText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
     [self getResults:_currentpagenumber];
 }
@@ -77,15 +80,23 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell ) {
         cell = [[ UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.minimumScaleFactor = 0.5;
+        cell.detailTextLabel.numberOfLines = 0;
+        cell.detailTextLabel.minimumScaleFactor = 0.25;
     }
-    cell.textLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"name"];
-    cell.detailTextLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"full_name"];
+    cell.textLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"full_name"];
+    cell.detailTextLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"description"];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    InfoViewController *infoVC = [storyBoard instantiateViewControllerWithIdentifier:@"InfoViewController"];
+    infoVC.repositoryInfo = [self.searchResults objectAtIndex:[indexPath row]];
+    [self.navigationController pushViewController:infoVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,6 +107,7 @@
 #pragma mark - ScrollView
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
     
     if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
         
@@ -137,9 +149,10 @@
 -(void)getResults:(NSInteger)pageNumber{
     
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_FRAGMENT_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=25",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
+    NSLog(@"urlString %@",urlString);
     [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString withCompletionHandler:^(id response, NSError *error) {
-        NSLog(@"%@", response);
+//        NSLog(@"%@", response);
         [self didFinishRecordsRequest:[response valueForKey:@"items"] forPage:_currentpagenumber];
     }];
 

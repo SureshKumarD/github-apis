@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CB1609CA036F4586465A72EB'
+               BlueprintIdentifier = '5231537BC8428F31AC8B1CF4'
                BlueprintName = 'Pods-GitHubApiExploration'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-GitHubApiExploration.a'>
