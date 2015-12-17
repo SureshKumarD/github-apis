@@ -8,6 +8,8 @@
 
 #import "NetworkManager.h"
 #import "Constants.pch"
+
+/* Show/ hide the status bar activity indicator */
 #define ShowNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
 #define HideNetworkActivityIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
 
@@ -36,29 +38,7 @@ static NetworkManager *networkManager = nil;
     if(!(apiName == REPOS && [urlString containsString:@"page=1"]))
     [self startActivity];
      ShowNetworkActivityIndicator();
-//    NSURL *url = [[NSURL alloc] initWithString:urlString];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    op.responseSerializer = [AFJSONResponseSerializer serializer];
-//    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        [self stopActivity];
-//         HideNetworkActivityIndicator();
-//        if(!operation.error) {
-//            //Return to the caller method.
-//            
-//            handler(responseObject,operation.error);
-//        }
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//    
-//        [self stopActivity];
-//         HideNetworkActivityIndicator();
-//        NSLog(@"Error  %@", [error localizedDescription]);
-//    }];
-//    
-//   
-//    [[NSOperationQueue mainQueue] addOperation:op];
+
     _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     _manager.responseSerializer = [AFJSONResponseSerializer serializer];
     _manager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"POST", @"GET"]];
