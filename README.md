@@ -15,6 +15,10 @@ LIBRARY MANAGEMENT TOOL:
        
        Cocoapods
 
+If you're getting the network error log as "  Request failed: forbidden (403) ", this means that the 
+
+github api limits the number of requests on a particular call. to learn more about read this (https://developer.github.com/v3/#rate-limiting)
+
 
 
 - Thanks,
