@@ -58,7 +58,7 @@
 - (void)initializations {
     
     self.searchBar.delegate = self;
-    self.currentpagenumber = 1;
+    self.currentpagenumber = NUMBER_ONE;
     self.searchResults = [[NSMutableArray alloc] init];
     self.title = HOME_SCREEN_TITLE;
     self.tableView.delegate = self;
@@ -68,11 +68,25 @@
 }
 #pragma mark - UISearchbar Delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.searchResults removeAllObjects];
+    _currentpagenumber = NUMBER_ONE;
+    if(!searchText || [searchText length] == NUMBER_ZERO) {
+        [self.tableView reloadData];
+        return;
+    }
     searchText = [searchText lowercaseString];
     _searchedText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     [self getResults:_currentpagenumber];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchResults removeAllObjects];
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+    _currentpagenumber = NUMBER_ONE;
+    [self getResults:_currentpagenumber];
+}
 
 #pragma mark - TableView DataSource & Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -95,16 +109,23 @@
         cell.detailTextLabel.numberOfLines = NUMBER_ZERO;
         cell.detailTextLabel.minimumScaleFactor = 0.25;
     }
-    cell.textLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"full_name"];
-    descriptionString = [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"description"];
-    if([descriptionString length] > 50)
-        descriptionString = [descriptionString substringToIndex:50];
-    cell.detailTextLabel.text =  descriptionString;
+    @try {
+        cell.textLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"full_name"];
+        descriptionString = [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"description"];
+        if([descriptionString length] > 50)
+            descriptionString = [descriptionString substringToIndex:50];
+        cell.detailTextLabel.text =  descriptionString;
 
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception caught : %@", [exception description]);
+    }
+      
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self stopAllNetworkCalls];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     InfoViewController *infoVC = [storyBoard instantiateViewControllerWithIdentifier:@"InfoViewController"];
     infoVC.repositoryInfo = [self.searchResults objectAtIndex:[indexPath row]];
@@ -174,10 +195,14 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
     NSLog(@"urlString %@",urlString);
-    [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString withCompletionHandler:^(id response, NSError *error) {
+    [APP_DELEGATE_INSTANCE.netWorkObject  getResponseWithUrl:urlString  withRequestApiName:REPOS withCompletionHandler:^(id response, NSError *error) {
 //        NSLog(@"%@", response);
         [self updateTableViewWithResults:[response valueForKey:@"items"] forPage:_currentpagenumber];
     }];
 
+}
+
+- (void)stopAllNetworkCalls {
+    [APP_DELEGATE_INSTANCE.netWorkObject cancelAllRequests];
 }
 @end

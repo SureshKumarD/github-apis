@@ -66,6 +66,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    [self stopAllNetworkCalls];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -96,14 +99,20 @@
 
 - (void)getTopThreeItems:(BOOL)isContributors{
     NSString *trailingPart = nil;
-    if(isContributors)
+    API_NAME apiName;
+    if(isContributors) {
         trailingPart = URL_CONTRIBUTORS;
-    else
+        apiName = CONTRIBUTORS;
+    }
+    else {
         trailingPart = URL_ISSUES_EVENTS;
+        apiName = ISSUES;
+    }
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@/%@%@",BASE_URL,URL_ISSUES_REPOS,self.owner,self.repoName ,trailingPart];
     NSLog(@"urlString %@",urlString);
-    [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString withCompletionHandler:^(id response, NSError *error) {
+    
+    [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString  withRequestApiName:apiName  withCompletionHandler:^(id response, NSError *error) {
         //        NSLog(@"%@", response);
         if([response isKindOfClass:[NSArray class]]) {
             if(!isContributors) {
@@ -257,8 +266,15 @@
 }
 
 
+-(void)dealloc {
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+    [self stopAllNetworkCalls];
+}
 
-
+- (void)stopAllNetworkCalls {
+    [APP_DELEGATE_INSTANCE.netWorkObject cancelAllRequests];
+}
 
 
 @end

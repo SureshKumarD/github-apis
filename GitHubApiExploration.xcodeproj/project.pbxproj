@@ -152,12 +152,9 @@
 			children = (
 				F935D5B21C21E41C002A746E /* AppDelegate.h */,
 				F935D5B31C21E41C002A746E /* AppDelegate.m */,
-				F935D5E21C21E66E002A746E /* NetworkManager.h */,
-				F935D5E31C21E66E002A746E /* NetworkManager.m */,
-				F935D5ED1C21EF72002A746E /* Constants.pch */,
-				F935D5EE1C21EFE7002A746E /* Headers.pch */,
-				F935D5E51C21E7CC002A746E /* HomeViewController.h */,
-				F935D5E61C21E7CC002A746E /* HomeViewController.m */,
+				F95957441C2336B20023DD5C /* NetworkManager */,
+				F95957451C2336BB0023DD5C /* PCHs */,
+				F95957431C23367D0023DD5C /* HomeViewController */,
 				F95EC9D21C223F580045964C /* InfoViewController */,
 				F95EC9DC1C22512F0045964C /* Common */,
 				F935D5B81C21E41C002A746E /* Main.storyboard */,
@@ -193,6 +190,33 @@
 				F935D5D61C21E41C002A746E /* Info.plist */,
 			);
 			path = GitHubApiExplorationUITests;
+			sourceTree = "<group>";
+		};
+		F95957431C23367D0023DD5C /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F935D5E51C21E7CC002A746E /* HomeViewController.h */,
+				F935D5E61C21E7CC002A746E /* HomeViewController.m */,
+			);
+			name = HomeViewController;
+			sourceTree = "<group>";
+		};
+		F95957441C2336B20023DD5C /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				F935D5E21C21E66E002A746E /* NetworkManager.h */,
+				F935D5E31C21E66E002A746E /* NetworkManager.m */,
+			);
+			name = NetworkManager;
+			sourceTree = "<group>";
+		};
+		F95957451C2336BB0023DD5C /* PCHs */ = {
+			isa = PBXGroup;
+			children = (
+				F935D5ED1C21EF72002A746E /* Constants.pch */,
+				F935D5EE1C21EFE7002A746E /* Headers.pch */,
+			);
+			name = PCHs;
 			sourceTree = "<group>";
 		};
 		F95EC9D21C223F580045964C /* InfoViewController */ = {
