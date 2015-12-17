@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/BaseViewController.m"
-            timestampString = "472000859.956484"
+            timestampString = "472017592.55493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-networkChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/InfoViewController.m"
-            timestampString = "472011805.632443"
+            timestampString = "472018228.574872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-getTopThreeItems:"
             landmarkType = "5">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "472010133.883458"
+                  timestampString = "472017592.610099"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
                   offsetFromSymbolStart = "824">
                </Location>
                <Location
@@ -57,7 +57,7 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "472010133.883623"
+                  timestampString = "472017592.610261"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -72,7 +72,7 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "472010133.883763"
+                  timestampString = "472017592.610433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -89,11 +89,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/InfoViewController.m"
-            timestampString = "472011805.632443"
+            timestampString = "472018228.574872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "-getTopThreeItems:"
             landmarkType = "5">
          </BreakpointContent>
@@ -105,11 +105,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/InfoViewController.m"
-            timestampString = "472011805.632443"
+            timestampString = "472018228.574872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-getTopThreeItems:"
             landmarkType = "5">
          </BreakpointContent>
@@ -121,12 +121,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/InfoViewController.m"
-            timestampString = "472011805.632443"
+            timestampString = "472018228.574872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-initializations"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubApiExploration/InfoViewController.m"
+            timestampString = "472018228.574872"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubApiExploration/ActivityIndicatorView.m"
+            timestampString = "472016632.394651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

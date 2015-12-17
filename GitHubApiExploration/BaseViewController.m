@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
 
 }
@@ -67,7 +68,11 @@
  **/
 
 - (void)networkChanged:(id)sender {
-    
+    BOOL isReachable = [AFNetworkReachabilityManager sharedManager].reachable;
+    if(!isReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Unavailable!" message:@"You're seems to be offline, please check your internet connection" delegate:nil cancelButtonTitle:@"Ok, Got It!" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 

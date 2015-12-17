@@ -22,6 +22,8 @@
 		F95EC9D51C223F920045964C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9D41C223F920045964C /* InfoTableViewCell.m */; };
 		F95EC9D81C223FAB0045964C /* InfoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */; };
 		F95EC9DB1C22511C0045964C /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9DA1C22511C0045964C /* CustomTableView.m */; };
+		F95EC9DE1C2257E10045964C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = F95EC9DD1C2257E10045964C /* placeholder.png */; };
+		F95EC9E11C225CDC0045964C /* ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95EC9E01C225CDC0045964C /* ActivityIndicatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,9 @@
 		F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoHeaderCell.m; sourceTree = "<group>"; };
 		F95EC9D91C22511C0045964C /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
 		F95EC9DA1C22511C0045964C /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		F95EC9DD1C2257E10045964C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		F95EC9DF1C225CDC0045964C /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
+		F95EC9E01C225CDC0045964C /* ActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,12 +198,8 @@
 		F95EC9D21C223F580045964C /* InfoViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F95EC9CF1C22261D0045964C /* InfoViewController.h */,
-				F95EC9D01C22261D0045964C /* InfoViewController.m */,
-				F95EC9D31C223F920045964C /* InfoTableViewCell.h */,
-				F95EC9D41C223F920045964C /* InfoTableViewCell.m */,
-				F95EC9D61C223FAB0045964C /* InfoHeaderCell.h */,
-				F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */,
+				F95EC9E21C2268E70045964C /* controller */,
+				F95EC9E31C2268F40045964C /* view */,
 			);
 			name = InfoViewController;
 			sourceTree = "<group>";
@@ -206,12 +207,51 @@
 		F95EC9DC1C22512F0045964C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F95EC9DD1C2257E10045964C /* placeholder.png */,
+				F95EC9E41C2269030045964C /* view */,
+				F95EC9E51C2269080045964C /* controller */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		F95EC9E21C2268E70045964C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				F95EC9CF1C22261D0045964C /* InfoViewController.h */,
+				F95EC9D01C22261D0045964C /* InfoViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		F95EC9E31C2268F40045964C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F95EC9D31C223F920045964C /* InfoTableViewCell.h */,
+				F95EC9D41C223F920045964C /* InfoTableViewCell.m */,
+				F95EC9D61C223FAB0045964C /* InfoHeaderCell.h */,
+				F95EC9D71C223FAB0045964C /* InfoHeaderCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		F95EC9E41C2269030045964C /* view */ = {
+			isa = PBXGroup;
+			children = (
 				F95EC9D91C22511C0045964C /* CustomTableView.h */,
 				F95EC9DA1C22511C0045964C /* CustomTableView.m */,
+				F95EC9DF1C225CDC0045964C /* ActivityIndicatorView.h */,
+				F95EC9E01C225CDC0045964C /* ActivityIndicatorView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		F95EC9E51C2269080045964C /* controller */ = {
+			isa = PBXGroup;
+			children = (
 				F935D5E81C21EDAA002A746E /* BaseViewController.h */,
 				F935D5E91C21EDAA002A746E /* BaseViewController.m */,
 			);
-			name = Common;
+			name = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F935D5BF1C21E41C002A746E /* LaunchScreen.storyboard in Resources */,
+				F95EC9DE1C2257E10045964C /* placeholder.png in Resources */,
 				F935D5BC1C21E41C002A746E /* Assets.xcassets in Resources */,
 				F935D5BA1C21E41C002A746E /* Main.storyboard in Resources */,
 			);
@@ -403,6 +444,7 @@
 				F935D5E41C21E66E002A746E /* NetworkManager.m in Sources */,
 				F95EC9DB1C22511C0045964C /* CustomTableView.m in Sources */,
 				F935D5B11C21E41C002A746E /* main.m in Sources */,
+				F95EC9E11C225CDC0045964C /* ActivityIndicatorView.m in Sources */,
 				F935D5E71C21E7CC002A746E /* HomeViewController.m in Sources */,
 				F95EC9D51C223F920045964C /* InfoTableViewCell.m in Sources */,
 			);

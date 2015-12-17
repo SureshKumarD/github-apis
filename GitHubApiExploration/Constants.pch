@@ -39,7 +39,10 @@
 
 
 #define kBLACK_COLOR [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]
+#define kGRAY_COLOR [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0f]
+#define kDARK_BLUE_COLOR [UIColor colorWithRed:52.0f/255.0f green:71.0f/255.0f blue:85.0f/255.0f alpha:1.0f]
 #define HOME_SCREEN_TITLE @"Github Repos"
+
 
 #
 #endif /* Constants_pch */

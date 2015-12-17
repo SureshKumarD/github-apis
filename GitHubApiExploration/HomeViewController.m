@@ -25,6 +25,11 @@
 
 @implementation HomeViewController
 
+/***
+ * Concept implemented :- Start typing any programming language name, 
+ * the server call fetches corresponding github language repositories, where the results are sorted by star rating in descending order. And lazyloading technique is implemented through pagination. Every hit fetches 50 entries, scolling down again fetches more results available.
+ ***/
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -51,24 +56,27 @@
 }
 
 - (void)initializations {
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    
     self.searchBar.delegate = self;
     self.currentpagenumber = 1;
     self.searchResults = [[NSMutableArray alloc] init];
     self.title = HOME_SCREEN_TITLE;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 #pragma mark - UISearchbar Delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     searchText = [searchText lowercaseString];
-    _searchedText = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
+    _searchedText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     [self getResults:_currentpagenumber];
 }
 
 
 #pragma mark - TableView DataSource & Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return NUMBER_ONE;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -77,17 +85,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
+    static NSString *descriptionString = nil;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(!cell ) {
         cell = [[ UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.numberOfLines = NUMBER_ZERO;
         cell.textLabel.minimumScaleFactor = 0.5;
-        cell.detailTextLabel.numberOfLines = 0;
+        cell.detailTextLabel.numberOfLines = NUMBER_ZERO;
         cell.detailTextLabel.minimumScaleFactor = 0.25;
     }
     cell.textLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"full_name"];
-    cell.detailTextLabel.text =  [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"description"];
+    descriptionString = [[self.searchResults objectAtIndex:[indexPath row]] valueForKey:@"description"];
+    if([descriptionString length] > 50)
+        descriptionString = [descriptionString substringToIndex:50];
+    cell.detailTextLabel.text =  descriptionString;
 
     return cell;
 }
@@ -103,6 +115,29 @@
     return 80.0f;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    UIView * additionalSeparator = [[UIView alloc] initWithFrame:CGRectMake(15,cell.frame.size.height-1,cell.frame.size.width-30,1)];
+    additionalSeparator.backgroundColor = kGRAY_COLOR;
+    [cell addSubview:additionalSeparator];
+}
+
+
 
 #pragma mark - ScrollView
 
@@ -111,11 +146,8 @@
     
     if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
         
-        //NSLog(@" scroll to bottom!");
-        if(_isPageRefresing == NO){ // no need to worry about threads because this is always on main thread.
-            
+        if(_isPageRefresing == NO){
             _isPageRefresing = YES;
-//            [self showMBProfressHUDOnView:self.view withText:@"Please wait..."];
             _currentpagenumber = _currentpagenumber +1;
             [self getResults:_currentpagenumber];
         }
@@ -123,9 +155,10 @@
     
 }
 
-// you can get pageNo from tag
-// make sure this is called in main thread
--(void)didFinishRecordsRequest:(NSArray *)results forPage:(NSInteger)pageNo{
+/**
+ * Update the UI once data has been fetched successfully.
+ **/
+-(void)updateTableViewWithResults:(NSArray *)results forPage:(NSInteger)pageNo{
     if(pageNo == 1){
         self.searchResults = [results mutableCopy];
     }
@@ -137,23 +170,13 @@
 }
 
 
--(void)didFailedChalkBoardRequestWithError:(NSError *)error{
-    
-    //If Since subsequent refresh calls(for page 2 or page 3 fails)
-    //then undo the current page number
-    _currentpagenumber--;
-    _isPageRefresing = NO;
-}
-
-
 -(void)getResults:(NSInteger)pageNumber{
     
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=25",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
     NSLog(@"urlString %@",urlString);
     [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString withCompletionHandler:^(id response, NSError *error) {
 //        NSLog(@"%@", response);
-        [self didFinishRecordsRequest:[response valueForKey:@"items"] forPage:_currentpagenumber];
+        [self updateTableViewWithResults:[response valueForKey:@"items"] forPage:_currentpagenumber];
     }];
 
 }

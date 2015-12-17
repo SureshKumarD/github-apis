@@ -15,7 +15,7 @@ static NetworkManager *networkManager = nil;
 
 - (instancetype)init {
     if(self = [super init]) {
-        
+        self.activityIndicatorView = [[ActivityIndicatorView alloc] init];
     }
     return self;
 }
@@ -29,13 +29,15 @@ static NetworkManager *networkManager = nil;
 
 
 - (void)getResponseWithUrl:(NSString *)urlString withCompletionHandler:(void (^)(id response, NSError *error))handler {
-    ShowNetworkActivityIndicator();
+    
+    [self startActivity];
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        HideNetworkActivityIndicator();
+        
+        [self stopActivity];
         if(!operation.error) {
             //Return to the caller method.
             
@@ -43,7 +45,8 @@ static NetworkManager *networkManager = nil;
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        HideNetworkActivityIndicator();
+    
+        [self stopActivity];
         NSLog(@"Error  %@", [error localizedDescription]);
     }];
     
@@ -52,4 +55,14 @@ static NetworkManager *networkManager = nil;
     
 }
 
+- (void)startActivity {
+    
+    [self.activityIndicatorView startActivityWithText:@"Processing..."];
+    ShowNetworkActivityIndicator();
+}
+
+- (void)stopActivity {
+    [self.activityIndicatorView stopActivity];
+    HideNetworkActivityIndicator();
+}
 @end

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking/AFNetworking.h"
+#import "ActivityIndicatorView.h"
 @interface NetworkManager : NSObject
 @property (nonatomic,strong) AFURLSessionManager *manager;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) ActivityIndicatorView *activityIndicatorView;
 
 /**
  * Create a single instance for NetworkManager class.

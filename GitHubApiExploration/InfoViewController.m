@@ -14,6 +14,8 @@
 #import "InfoTableViewCell.h"
 #import "CustomTableView.h"
 
+#import "SDWebImage/UIImageView+WebCache.h"
+
 
 @interface InfoViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property NSString *owner,*repoName;
@@ -23,10 +25,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *repoDescriptionLabel;
 @property (weak, nonatomic) IBOutlet CustomTableView *tableView;
 @property (strong, atomic)NSArray *issuesInfoArray, *contributorInfoArray;
+@property BOOL isLoadedFirstTime;
 
 @end
 
 @implementation InfoViewController
+
+/***
+ * Concept implemented :- The repository object(NSDictionary) being passed to this screen,
+ * Here, we parse the required attributes, and make a server call to fetch newest 3 issues(by default, the issues github api returns the newest api, so sorting parameters applied), and updated in the UITableView, in which only the particular section is being reloaded. In this case issues section is '0'
+ * Similarly the contributors also being fetched by the server call, and updates the corresponding 
+ * UITableView section, in this case section is '1'
+ ***/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,12 +82,16 @@
     self.title = self.repoName;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.allowsSelection = NO;
     self.repoTitleLabel.text = [self.repositoryInfo valueForKey:@"full_name"];
     self.repoDescriptionLabel.text = [self.repositoryInfo valueForKey:@"description"];
+    self.isLoadedFirstTime = YES;
 }
 
 /**
- * Get Top 3 Issues
+ * Get Top 3 Issues/ Contributors
  **/
 
 - (void)getTopThreeItems:(BOOL)isContributors{
@@ -128,15 +142,21 @@
     NSInteger arrayCount = 0;
     if(section == 0) {
         arrayCount = [self.issuesInfoArray count];
-        if (arrayCount == 0)
-            return 1;
-        else
+        if (arrayCount == 0) {
+            if(self.isLoadedFirstTime)
+                return arrayCount;
+            else
+                return 1;
+        }else
             return arrayCount;
     }else {
         arrayCount = [self.contributorInfoArray count];
-        if (arrayCount == 0)
-            return 1;
-        else
+        if (arrayCount == 0) {
+            if(self.isLoadedFirstTime)
+                return arrayCount;
+            else
+                return 1;
+        }else
             return arrayCount;
     }
         
@@ -148,8 +168,8 @@
     /**
      * If the array count is zero, display ' no data available ' text.
      **/
-    
-    if((([indexPath section] == 0) && ([self.issuesInfoArray count ] == 0)) || (([indexPath section] == 1) && [self.contributorInfoArray count] == 0)) {
+    static NSString *urlString;
+    if((([indexPath section] == NUMBER_ZERO) && ([self.issuesInfoArray count ] == NUMBER_ZERO)) || (([indexPath section] == NUMBER_ONE) && [self.contributorInfoArray count] == NUMBER_ZERO)) {
         InfoHeaderCell *cell = [ tableView dequeueReusableCellWithIdentifier:@"InfoHeaderCell"];
         cell.headerLabel.text = @"No Data Available";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -167,14 +187,16 @@
             cell.ownerCaptionLabel.text = @"Actor";
             cell.infoLabel1.text = [NSString stringWithFormat:@"Issue id: %@", [dictionary valueForKey:@"id"] ];
             cell.infoLabel2.text = [NSString stringWithFormat:@"Created at: %@",[dictionary valueForKey:@"created_at"]];
-            cell.ownerAvatarImageView.image = nil;
+            urlString = [[dictionary valueForKey:@"actor"] valueForKey:@"avatar_url"];
+            [cell.ownerAvatarImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         }else {
             
             dictionary = [self.contributorInfoArray objectAtIndex:[indexPath row]];
             cell.ownerCaptionLabel.text = @"Owner";
-            cell.infoLabel1.text = [NSString stringWithFormat:@"Contributer username: %@", [dictionary valueForKey:@"login"] ];
+            cell.infoLabel1.text = [NSString stringWithFormat:@"Contributor username: %@", [dictionary valueForKey:@"login"] ];
             cell.infoLabel2.text = [NSString stringWithFormat:@"Contributions: %@",[dictionary valueForKey:@"contributions"]];
-            cell.ownerAvatarImageView.image = nil;
+            urlString = [dictionary valueForKey:@"avatar_url"];
+            [cell.ownerAvatarImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         }
         
         
@@ -186,7 +208,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44.0f;
+     if(((section == NUMBER_ZERO) && ([self.issuesInfoArray count ] == NUMBER_ZERO)) || ((section == NUMBER_ONE) && [self.contributorInfoArray count] == NUMBER_ZERO))
+        return NUMBER_ZERO;
+    else
+        
+        return 44.0f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -207,6 +233,29 @@
     [view addSubview:label];
     return view;
 }
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    UIView * additionalSeparator = [[UIView alloc] initWithFrame:CGRectMake(15,cell.frame.size.height-1,cell.frame.size.width-30,1)];
+    additionalSeparator.backgroundColor = kGRAY_COLOR;
+    [cell addSubview:additionalSeparator];
+}
+
 
 
 
