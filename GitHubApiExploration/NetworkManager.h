@@ -20,7 +20,7 @@
 /**
  * Create a single instance for NetworkManager class.
  **/
-+(NetworkManager *)sharedNetworkManager;
++(NetworkManager *)sharedInstance;
 
 
 /**

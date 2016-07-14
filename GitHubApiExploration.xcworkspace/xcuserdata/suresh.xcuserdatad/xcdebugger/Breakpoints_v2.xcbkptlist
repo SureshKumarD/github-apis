@@ -42,12 +42,12 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "472073236.537869"
+                  timestampString = "490211003.336464"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
                   endingLineNumber = "139"
-                  offsetFromSymbolStart = "896">
+                  offsetFromSymbolStart = "889">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,12 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "472073236.540176"
+                  timestampString = "490211003.336694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "29">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubApiExploration/NetworkManager.m"
-            timestampString = "472073146.50549"
+            timestampString = "490211002.2063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-getResponseWithUrl:withRequestApiName:withCompletionHandler:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-startActivity"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

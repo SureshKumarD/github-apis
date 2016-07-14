@@ -17,11 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Delay 2 seconds after launch, to show the initial viewcontroller.
     [NSThread sleepForTimeInterval:2.0f];
-    /***
-     *Initialize the network object, to be used for all network functionalities... 
-     **/
-    [self initializeNetworkObject];
     return YES;
 }
 
@@ -49,8 +47,5 @@
 
 
 
--(void)initializeNetworkObject {
-    self.netWorkObject = [NetworkManager sharedNetworkManager];
-}
 
 @end

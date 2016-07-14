@@ -153,7 +153,7 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     
-    UIView * additionalSeparator = [[UIView alloc] initWithFrame:CGRectMake(15,cell.frame.size.height-1,cell.frame.size.width-30,1)];
+    UIView * additionalSeparator = [[UIView alloc] initWithFrame:CGRectMake(15,cell.frame.size.height-0.5,cell.frame.size.width-30,0.5)];
     additionalSeparator.backgroundColor = kGRAY_COLOR;
     [cell addSubview:additionalSeparator];
 }
@@ -195,7 +195,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
     NSLog(@"urlString %@",urlString);
-    [APP_DELEGATE_INSTANCE.netWorkObject  getResponseWithUrl:urlString  withRequestApiName:REPOS withCompletionHandler:^(id response, NSError *error) {
+    [[NetworkManager sharedInstance]  getResponseWithUrl:urlString  withRequestApiName:REPOS withCompletionHandler:^(id response, NSError *error) {
 //        NSLog(@"%@", response);
         [self updateTableViewWithResults:[response valueForKey:@"items"] forPage:_currentpagenumber];
     }];
@@ -203,6 +203,6 @@
 }
 
 - (void)stopAllNetworkCalls {
-    [APP_DELEGATE_INSTANCE.netWorkObject cancelAllRequests];
+    [[NetworkManager sharedInstance] cancelAllRequests];
 }
 @end

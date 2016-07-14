@@ -15,7 +15,7 @@
 
 @implementation NetworkManager
 @synthesize operation = _operation, manager = _manager;
-static NetworkManager *networkManager = nil;
+
 
 - (instancetype)init {
     if(self = [super init]) {
@@ -25,10 +25,13 @@ static NetworkManager *networkManager = nil;
     }
     return self;
 }
-+(NetworkManager *)sharedNetworkManager {
-    if(!networkManager) {
-        networkManager = [[NetworkManager alloc]init];
-    }
++(NetworkManager *)sharedInstance {
+    static NetworkManager *networkManager = nil;
+    static dispatch_once_t oneTimeToken;
+    dispatch_once(&oneTimeToken, ^{
+        networkManager = [[self alloc]init];
+    });
+    
     return networkManager;
     
 }

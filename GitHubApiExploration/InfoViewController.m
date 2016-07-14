@@ -112,7 +112,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@/%@%@",BASE_URL,URL_ISSUES_REPOS,self.owner,self.repoName ,trailingPart];
     NSLog(@"urlString %@",urlString);
     
-    [APP_DELEGATE_INSTANCE.netWorkObject getResponseWithUrl:urlString  withRequestApiName:apiName  withCompletionHandler:^(id response, NSError *error) {
+    [[NetworkManager sharedInstance] getResponseWithUrl:urlString  withRequestApiName:apiName  withCompletionHandler:^(id response, NSError *error) {
         //        NSLog(@"%@", response);
         if([response isKindOfClass:[NSArray class]]) {
             if(!isContributors) {
@@ -273,7 +273,7 @@
 }
 
 - (void)stopAllNetworkCalls {
-    [APP_DELEGATE_INSTANCE.netWorkObject cancelAllRequests];
+    [[NetworkManager sharedInstance] cancelAllRequests];
 }
 
 
