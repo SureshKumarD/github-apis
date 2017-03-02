@@ -42,7 +42,7 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "490211003.336464"
+                  timestampString = "510114040.244329"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -57,7 +57,7 @@
                   moduleName = "GitHubApiExploration"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/suresh/Documents/GitHubApiExploration/GitHubApiExploration/InfoViewController.m"
-                  timestampString = "490211003.336694"
+                  timestampString = "510114040.249759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -160,7 +160,23 @@
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "-startActivity"
-            landmarkType = "5">
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubApiExploration/HomeViewController.m"
+            timestampString = "510113454.971676"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-searchBar:textDidChange:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

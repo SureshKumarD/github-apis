@@ -193,7 +193,7 @@
 
 -(void)getResults:(NSInteger)pageNumber{
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_SEARCH_REPOS, URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@q=%@%@%@%@&page=%d&per_page=50",BASE_URL,URL_SEARCH_REPOS, _searchedText,URL_SEARCH_REPO_QUERY_FRAGMENT,_searchedText,URL_SEARCH_REPO_TRAIL_FRAGMENT,(int)pageNumber ];
     NSLog(@"urlString %@",urlString);
     [[NetworkManager sharedInstance]  getResponseWithUrl:urlString  withRequestApiName:REPOS withCompletionHandler:^(id response, NSError *error) {
 //        NSLog(@"%@", response);

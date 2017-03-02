@@ -15,7 +15,7 @@
 
 #define BASE_URL  @"https://api.github.com/"
 #define URL_SEARCH_REPO_TRAIL_FRAGMENT @"&sort=stars&order=desc"
-#define URL_SEARCH_REPO_QUERY_FRAGMENT @"q=language:"
+#define URL_SEARCH_REPO_QUERY_FRAGMENT @"+language:"
 #define URL_SEARCH_REPOS @"search/repositories?"
 #define APP_DELEGATE_INSTANCE  ((AppDelegate *)[ [UIApplication sharedApplication] delegate])
 
